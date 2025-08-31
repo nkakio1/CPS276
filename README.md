@@ -1,1 +1,1 @@
-# CPS276
+ssh nakio@russet-v8.wccnet.edu
