@@ -31,10 +31,9 @@
   <div class="col-md-4">
     <label for="inputState" class="form-label">State</label>
     <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
       <option>Texas</option>
       <option>Florida</option>
-      <option>Michigan</option>
+      <option selected>Michigan</option>
       <option>California</option>
       <option>New York</option>
     </select>
