@@ -9,28 +9,26 @@
 <body class="container">
     <div>
         <h1>Assignment 1 Form</h1>
- 
-
 <form method="post" action="#" class="row g-3">
   <div class="col-md-6">
     <label for="inputfname4" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="inputfname4">
+    <input type="text" class="form-control" id="inputfname4" name="first_name">
   </div>
   <div class="col-md-6">
     <label for="inputname4" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="inputname4">
+    <input type="text" class="form-control" id="inputname4" name="last_name">
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress">
+    <input type="text" class="form-control" id="inputAddress" name="address">
   </div>
   <div class="col-md-6">
     <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity">
+    <input type="text" class="form-control" id="inputCity" name="city">
   </div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">State</label>
-    <select id="inputState" class="form-select">
+    <select id="inputState" class="form-select" name="state">
       <option>Texas</option>
       <option>Florida</option>
       <option selected>Michigan</option>
@@ -40,26 +38,26 @@
   </div>
   <div class="col-md-2">
     <label for="inputZip" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="inputZip">
+    <input type="text" class="form-control" id="inputZip" name="zip">
   </div>
  
   <div class="col-md-6">
     <label for="inputpnum4" class="form-label">Phone Number</label>
-    <input type="text" class="form-control" id="inputpnum4">
+    <input type="text" class="form-control" id="inputpnum4" name="phone_number">
   </div>
   <div class="col-md-6">
     <label for="inputemail4" class="form-label">E-mail</label>
-    <input type="email" class="form-control" id="inputemail4">
+    <input type="email" class="form-control" id="inputemail4" name="email">
   </div>
 
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" value="text">
   <label class="form-check-label" for="radioDefault1">
     text
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" value="email">
   <label class="form-check-label" for="radioDefault2">
     E-mail
   </label>
