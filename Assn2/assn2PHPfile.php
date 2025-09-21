@@ -1,7 +1,7 @@
 
 <?php
 
-$evenNumbers = "\n Even Numbers: " . evenNumbersLoop();
+$evenNumbers = " Even Numbers: " . evenNumbersLoop();
 function evenNumbersLoop() {
     $evens = [];
     for ($i = 1; $i <= 50; $i++) {
