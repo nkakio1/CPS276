@@ -24,7 +24,7 @@ class Calculator {
         $b = (float)$b;
 
         if ($op === '/' && $b == 0.0) {
-            return "You CANNOT DIVIDE BY 0!!\n";
+            return "Result of $a $op $b =  You CANNOT DIVIDE BY 0!!\n";
         }
 
         switch ($op) {
@@ -36,7 +36,7 @@ class Calculator {
                 return "Unhandled operator: {$op}\n";
         }
 
-return 'Result of ' . $a . ' ' . $op . ' ' . $b . ' = ' . (string)$res . ' units' . "\n";
+return "Result of $a $op $b = "  . (string)$res .  " units. \n";
     }
 }
 ?>
