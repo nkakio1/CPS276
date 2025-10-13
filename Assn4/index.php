@@ -36,3 +36,4 @@ $result .= $Calculator->calc(10);
 
 </body>
 </html>
+

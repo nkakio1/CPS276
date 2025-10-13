@@ -1,107 +1,59 @@
 <?php
-require_once __DIR__ . '/classes/Directories.php';
+require_once 'classes/Directories.php';
 
-$dirs = new Directories(__DIR__ . '/directories', 'directories');
+$result = null;
 
-$notice = '';
-$error  = '';
-$link   = '';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $folderName = $_POST['folderName'] ?? '';
+    $fileContent = $_POST['fileContent'] ?? '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $folder  = $_POST['folder']  ?? '';
-    $content = $_POST['content'] ?? '';
-
-    if ($dirs->error) {
-        $error = $dirs->error;
-    } else {
-        if ($dirs->create($folder, $content)) {
-            $notice = 'File and directory were created.';
-            $link   = $dirs->webFileHref();
-        } else {
-            $error = $dirs->error;
-        }
-    }
+    $dirHandler = new Directories();
+    $result = $dirHandler->createDirectoryAndFile($folderName, $fileContent);
 }
 ?>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <title>File and Directory Assignment</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>.form-note{color:#6c757d}</style>
 </head>
-<body class="bg-light">
-  <div class="container py-4">
+<body>
+  <div class="container mt-4">
+    <h1>File and Directory Assignment</h1>
 
-    <!-- Header -->
-    <div class="row mb-3">
-      <div class="col-12">
-        <h1 class="h3 mb-0">File and Directory Assignment</h1>
-        <p class="form-note mb-0">Enter a folder name and the contents of a file. Folder names should contain alphabetic characters only.</p>
-      </div>
-    </div>
+    <!-- Display plain text message (no color or box) -->
+    <?php if ($result): ?>
+      <p class="mt-2">
+        <?php echo htmlspecialchars($result['message']); ?>
+      </p>
 
-    <!-- Error Banner -->
-    <?php if ($error): ?>
-      <div class="alert alert-warning d-flex align-items-center" role="alert">
-        <div class="fw-semibold me-2">Directory Name Already Exists</div>
-        <div><?= htmlspecialchars($error) ?></div>
-      </div>
+      <!-- Show file link if available -->
+      <?php if (!empty($result['link'])): ?>
+        <p>
+          <a href="<?php echo htmlspecialchars($result['link']); ?>" target="_blank">
+            Path where file is located
+          </a>
+        </p>
+      <?php endif; ?>
     <?php endif; ?>
 
-    <!-- Success Banner -->
-    <?php if ($notice): ?>
-      <div class="alert alert-success" role="alert">
-        <div class="fw-semibold">Directory Created and Link Shown</div>
-        <div class="mt-1"><?= htmlspecialchars($notice) ?></div>
-        <?php if ($link): ?>
-          <div class="mt-2">
-            <a class="link-primary" href="<?= htmlspecialchars($link) ?>" target="_blank" rel="noopener">
-              Path where file is located
-            </a>
-          </div>
-        <?php endif; ?>
+    <p>Enter a folder name and the contents of a file. Folder names should contain alphanumeric characters only.</p>
+
+    <form method="post" action="index.php">
+      <div class="form-group">
+        <label for="folderName">Folder Name</label>
+        <input type="text" class="form-control" id="folderName" name="folderName" required>
       </div>
-    <?php endif; ?>
 
-    <!-- Card with Form -->
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <form method="post" novalidate>
-          <div class="mb-3">
-            <label for="folder" class="form-label">Folder Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="folder"
-              name="folder"
-              value="<?= isset($_POST['folder']) ? htmlspecialchars($_POST['folder']) : '' ?>"
-              required
-              aria-describedby="folderHelp"
-            >
-            <div id="folderHelp" class="form-text">Letters only; no spaces or special characters.</div>
-          </div>
-
-          <div class="mb-3">
-            <label for="content" class="form-label">File Content</label>
-            <textarea
-              class="form-control"
-              id="content"
-              name="content"
-              rows="8"
-              required
-            ><?= isset($_POST['content']) ? htmlspecialchars($_POST['content']) : '' ?></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+      <div class="form-group">
+        <label for="fileContent">File Content</label>
+        <textarea class="form-control" id="fileContent" name="fileContent" rows="5"></textarea>
       </div>
-    </div>
 
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
