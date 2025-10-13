@@ -48,7 +48,6 @@ function displayNames($names) {
 
 //How does the use of "\n" inside a double-quoted string affect how names are displayed in the textarea? Why not use <br>?
 
-//What security considerations should be taken into account when handling user input in this application?
-*/
+How does processNames.php determine whether to add a new name or clear all names based on which button was clicked?*/
 ?>
 

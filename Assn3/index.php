@@ -33,8 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="form-group mt-3">
           <label for="namelist">List of Names</label>
           <textarea style="height: 500px;" class="form-control" id="namelist"><?php
-           
+           if (!empty($output)) {
+               require_once 'processNames.php';
             echo displayNames($output);
+           }
           ?></textarea>
         </div>
 

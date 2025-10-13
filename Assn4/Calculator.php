@@ -3,28 +3,28 @@
 class Calculator {
     public function calc($op = null, $a = null, $b = null) {
         if ($op === null) {
-            return "No operator provided\n";
+            return "No operator provided<br>";
         }
 
-        // Validate operator
+  
         if (!in_array($op, ['+','-','*','/'])) {
-            return "Invalid operator: {$op}\n";
+            return "Invalid operator: {$op}<br>";
         }
 
-        // If operands missing, give an informative message
+
         if (!isset($a) || !isset($b)) {
-            return "Missing operand(s) for operator {$op}\n";
+            return "Missing operand(s) for operator {$op}<br>";
         }
 
         if (!is_numeric($a) || !is_numeric($b)) {
-            return "Non-numeric operand(s): {$a}, {$b}\n";
+            return "Non-numeric operand(s): {$a}, {$b}<br>";
         }
 
         $a = (float)$a;
         $b = (float)$b;
 
         if ($op === '/' && $b == 0.0) {
-            return "You CANNOT DIVIDE BY 0!!\n";
+            return "You CANNOT DIVIDE BY 0!!<br>";
         }
 
         switch ($op) {
@@ -33,10 +33,10 @@ class Calculator {
             case '*': $res = $a * $b; break;
             case '/': $res = $a / $b; break;
             default:
-                return "Unhandled operator: {$op}\n";
+                return "Unhandled operator: {$op}<br>";
         }
 
-return 'Result of ' . $a . ' ' . $op . ' ' . $b . ' = ' . (string)$res . ' units' . "\n";
+return 'Result of ' . $a . ' ' . $op . ' ' . $b . ' = ' . (string)$res . ' units' . "<br>";
     }
 }
 ?>
