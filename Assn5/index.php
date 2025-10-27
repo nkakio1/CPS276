@@ -17,19 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <title>File and Directory Assignment</title>
+  <title>Assignment 5</title>
 </head>
 <body>
   <div class="container mt-4">
-    <h1>File and Directory Assignment</h1>
+    <h1>Assignment 5</h1>
 
-    <!-- Display plain text message (no color or box) -->
     <?php if ($result): ?>
       <p class="mt-2">
         <?php echo htmlspecialchars($result['message']); ?>
       </p>
 
-      <!-- Show file link if available -->
       <?php if (!empty($result['link'])): ?>
         <p>
           <a href="<?php echo htmlspecialchars($result['link']); ?>" target="_blank">
