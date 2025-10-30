@@ -96,4 +96,66 @@ class Date_time {
     return '<p style="margin-top:10px; margin-bottom:10px;">' . htmlspecialchars($msg) . '</p>';
   }
 }
+
+
+
+/*
+PROJECT CHECKLIST – ADD & DISPLAY NOTES (PHP)
+
+1. FILES
+
+aSN8/
+  classes/Date_time.php
+  classes/Db_conn.php
+  classes/Pdo_methods.php
+index.php
+display_notes.php
+
+2. DATABASE
+
+CREATE TABLE note (
+  note_id INT AUTO_INCREMENT PRIMARY KEY,
+  date_time INT NOT NULL,
+  note TEXT NOT NULL
+);
+
+4. PDO_METHODS.PHP
+
+- Extends Db_conn.
+- Provides reusable methods for common PDO operations (CRUD).
+-add for this project
+
+5. DATE_TIME.PHP
+
+- Handles add & display logic.
+- Converts datetime to timestamp and back.
+- Returns plain text messages (no Bootstrap alerts).
+- Builds compact bordered table for notes.
+
+6. INDEX.PHP
+
+-add php to html provided
+
+7. DISPLAY_NOTES.PHP
+
+-add php to html provided
+
+CONCEPTS NEEDED – ADD & DISPLAY NOTES PROJECT
+
+1. PHP Basics
+2. Using classes, methods, and require/include
+3. Handling HTML forms with POST 
+4. Server-side validation 
+5. Working with PDO for database access
+6. Creating and using prepared statements
+7. Binding parameters (bindValue / bindParam)
+8. Executing SQL SELECT and INSERT queries
+9. Converting dates with strtotime() and date()
+10. Displaying data in HTML tables
+11. Basic Bootstrap styling for layout
+12. Handling and displaying simple messages
+13. Managing file paths and includes
+14. Debugging PHP errors and exceptions
+*/
+
 ?>
