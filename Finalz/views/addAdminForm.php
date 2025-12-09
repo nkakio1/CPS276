@@ -1,6 +1,9 @@
 <?php require_once 'includes/navigation.php'; ?>
+
 <h1>Add Admin</h1>
+
 <?php echo $msg; ?>
+
 <form method="post" action="index.php?page=addAdmin">
     <div class="row mb-3">
         <div class="col-md-6">

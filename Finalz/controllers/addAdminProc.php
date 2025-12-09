@@ -1,4 +1,7 @@
 <?php
+require_once 'classes/Pdo_methods.php';
+require_once 'classes/StickyForm.php';
+
 $sticky = new StickyForm();
 $msg = "";
 
@@ -12,11 +15,20 @@ $config = [
 ];
 
 if(isset($_POST['addAdmin'])){
+    
     $config = $sticky->validateForm($_POST, $config);
+
+    
+    if($config['password']['required'] && empty($config['password']['value'])){
+        $config['password']['error'] = $config['password']['errorMsg'];
+        $config['masterStatus']['error'] = true;
+    }
+
     if($config['masterStatus']['error'] == false){
         $pdo = new PdoMethods();
         $sql = "SELECT email FROM admins WHERE email = :email";
         $res = $pdo->selectBinded($sql, [[':email', $config['email']['value'], 'str']]);
+        
         if(count($res) > 0){
             $config['email']['error'] = "Email already exists.";
             $config['masterStatus']['error'] = true;
@@ -24,6 +36,7 @@ if(isset($_POST['addAdmin'])){
     }
 
     if($config['masterStatus']['error'] == false){
+        
         $fullName = $config['fname']['value'] . " " . $config['lname']['value'];
         $hashed = password_hash($config['password']['value'], PASSWORD_DEFAULT);
         
@@ -34,11 +47,13 @@ if(isset($_POST['addAdmin'])){
             [':password', $hashed, 'str'],
             [':status', $config['status']['selected'], 'str']
         ];
+        
         $pdo = new PdoMethods();
         $result = $pdo->otherBinded($sql, $bindings);
 
         if($result == 'noerror'){
             $msg = "<p>Admin Added</p>";
+            // Clear the form values on success
             foreach($config as $k => &$v){
                 if($k == 'masterStatus') continue;
                 if(isset($v['value'])) $v['value'] = '';
